@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticketing Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #78A9F4;
+            text-align: center;
+            color: black;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: #3C7CF5;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .ticket {
+            display: none;
+            margin-top: 20px;
+        }
+        .ticket img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Ticketing Center</h2>
+        <label>Complete Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+
+            <div class="container">
+        <form>
+            <label>Choose your Seat:</label>
+            <select class="form-select" id="seat">
+                <option value="none">Select</option>
+                <option value="250">Front Row</option>
+                <option value="300">Middle Row</option>
+                <option value="350">Back Row</option>
+            </select>
+<br>
+            <label> Discount? </label>
+            <select class="form-select" id="discount">
+                <option value="none"> Select </option>
+                <option value="0.2">PWD/SC/STUDENT</option>
+                <option value="0">Regular</option>
+            </select>
+
+            <button type="button" class="btn btn-danger" onclick="check_discount()"> Seat Price </button>
+        </form>
+
+         <button onclick="generateTicket()">Generate Ticket</button>
+        
+        <div class="ticket" id="ticket">
+            <img src="golden.jpg" alt="Golden Ticket">
+            <button onclick="printTicket()">Print Ticket</button>
+        </div>
+    </div>
+
+    <script>
+        function generateTicket() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            
+            if (name && email) {
+                document.getElementById("ticket").style.display = "block";
+            } else {
+                alert("Please enter all details.");
+            }
+        }
+        function printTicket() {
+            window.print();
+        }
+
+        function check_discount() {
+            var seat1 = document.getElementById ('seat').value;
+            var disc1 = document.getElementById ('discount').value;
+            var final_rate = seat1 - (disc1 * seat1);
+
+            window.alert('Your seat price is ' + final_rate); 
+        }
+    </script>
+</body>
+</html>
